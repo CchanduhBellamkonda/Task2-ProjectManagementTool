@@ -1,0 +1,131 @@
+<html>
+<head>
+  <title>Project Management Tool</title>
+  <style>
+    /* CSS styles for the project management tool */
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .task {
+      margin-bottom: 10px;
+      padding: 10px;
+      background-color: #f4f4f4;
+    }
+
+    .task input[type="text"] {
+      width: 70%;
+      padding: 5px;
+    }
+
+    .task button {
+      padding: 5px 10px;
+    }
+
+    .task-list {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .user {
+      margin-bottom: 10px;
+    }
+
+    .user h3 {
+      margin-top: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Project Management Tool</h1>
+
+    <!-- Task assignment section -->
+    <div class="task">
+      <h2>Assign a Task</h2>
+      <input type="text" id="taskInput" placeholder="Enter task description">
+      <button onclick="addTask()">Assign</button>
+    </div>
+
+    <!-- Task list section -->
+    <div class="task">
+      <h2>Task List</h2>
+      <ul id="taskList" class="task-list">
+      </ul>
+    </div>
+
+    <!-- User communication section -->
+    <div class="user">
+      <h3>Users</h3>
+      <textarea id="userChat" rows="5" placeholder="Enter your message"></textarea>
+      <button onclick="sendMessage()">Send</button>
+    </div>
+
+    <div class="user">
+      <h3>Chat</h3>
+      <ul id="chatList" class="task-list">
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    // JavaScript code for the project management tool
+
+    // Task list array
+    var tasks = [];
+
+    // Add a new task to the list
+    function addTask() {
+      var taskInput = document.getElementById('taskInput');
+      var taskDescription = taskInput.value.trim();
+      if (taskDescription !== '') {
+        tasks.push(taskDescription);
+        taskInput.value = '';
+        updateTaskList();
+      }
+    }
+
+    // Update the task list display
+    function updateTaskList() {
+      var taskList = document.getElementById('taskList');
+      taskList.innerHTML = '';
+      tasks.forEach(function(task) {
+        var listItem = document.createElement('li');
+        listItem.textContent = task;
+        taskList.appendChild(listItem);
+      });
+    }
+
+    // User chat messages array
+    var chatMessages = [];
+
+    // Send a chat message
+    function sendMessage() {
+      var userChat = document.getElementById('userChat');
+      var message = userChat.value.trim();
+      if (message !== '') {
+        chatMessages.push(message);
+        userChat.value = '';
+        updateChatList();
+      }
+    }
+
+    // Update the chat list display
+    function updateChatList() {
+      var chatList = document.getElementById('chatList');
+      chatList.innerHTML = '';
+      chatMessages.forEach(function(message) {
+        var listItem = document.createElement('li');
+        listItem.textContent = message;
+        chatList.appendChild(listItem);
+      });
+    }
+  </script>
+</body>
+</html>
